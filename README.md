@@ -1,4 +1,6 @@
-# Folderum 3 — `ls` Is The Bootloader
+# Folderum 3
+
+> **FIXED BUILD:** login safely handles missing values, and Folderum now binds to `0.0.0.0:8080` by default so remote browsers can actually reach the inode catastrophe. — `ls` Is The Bootloader
 
 > **No database. No application files. No bootstrap file. No decoder file.**  
 > Run the forum with:
@@ -193,14 +195,14 @@ ls|sh
 You should see:
 
 ```text
-Folderum 3: ls is the bootloader on http://127.0.0.1:8080
+Folderum 3: ls is the bootloader on http://0.0.0.0:8080
 Installed tree contains directories only. Ctrl+C to stop.
 ```
 
 Open:
 
 ```text
-http://127.0.0.1:8080/
+http://0.0.0.0:8080/
 ```
 
 For access from another machine, set the listen address before launching:
@@ -687,7 +689,7 @@ Nothing automatically.
 Folderum's tiny server defaults to:
 
 ```text
-127.0.0.1:8080
+0.0.0.0:8080
 ```
 
 Your normal Apache/nginx setup can remain on port 80.
