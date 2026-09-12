@@ -1,8 +1,6 @@
-# Folderum 3
+# Folderum 3 — `ls` Is The Bootloader
 
-> **FIXED BUILD:** login safely handles missing values, and Folderum now binds to `0.0.0.0:8080` by default so remote browsers can actually reach the inode catastrophe. — `ls` Is The Bootloader
-
-> **No database. No application files. No bootstrap file. No decoder file.**  
+> **No database. No application files. No bootstrap file. No decoder file.** 
 > Run the forum with:
 >
 > ```bash
@@ -13,7 +11,7 @@
 
 Folderum 3 is a deliberately cursed PHP forum whose **entire installed runtime is directories**.
 
-Not “mostly directories.”
+Its not "oh 90% is directories haha thats funny"
 
 Not “the database is directories but the PHP is normal.”
 
@@ -46,19 +44,19 @@ more folders
 This repository contains two useful things:
 
 ```text
-README.md       ← you are here; GitHub insists words live in files
+README.md       ← you are here; GitHub insists on explaining this shit to you
 folderum3.zip   ← the actual directory-only runtime
 ```
 
-The ZIP archive itself is obviously a file because transporting a directory tree through GitHub without a container is apparently “normal.” **Inside `folderum3.zip` there are zero regular files.**
+The ZIP archive itself is obviously a file because "A Directory cant be empty ~ Github 2026" **Inside `folderum3.zip` there are zero regular files.**
 
-This is not production software. It is a hostile demonstration of what happens when `mkdir()` receives venture funding.
+This is not production software. It is a hostile demonstration of fuck all to traditional Software.
 
 ---
 
 ## The entire startup procedure
 
-Install the dependencies, extract the archive, enter the directory, and commit the incantation:
+Install the dependencies, extract the archive, enter the directory, and commit Warcrimes against God, CompSci and Yugoslavia:
 
 ```bash
 sudo apt update
@@ -82,20 +80,11 @@ There is no `index.php`.
 
 There is no `run.sh`.
 
-There is no loader file.
-
-There is no configuration file.
-
-There is no source file.
-
-There is no database file.
-
-There is no CSS file.
-
-There is no session file.
+There is no files
 
 There is no reason this should exist.
 
+And theres no Easter Bunny
 ---
 
 # Requirements
@@ -130,9 +119,9 @@ PHP 8+ is recommended.
 
 ---
 
-# Install somewhere sensible-ish
+# Install somewhere.
 
-For a demo server:
+For a (not recommended) production run
 
 ```bash
 cd /var/www/html
@@ -140,7 +129,7 @@ sudo unzip /path/to/folderum3.zip
 sudo chown -R www-data:www-data /var/www/html/folderum3
 ```
 
-The program directories only need to be readable/traversable. The hidden `.data` tree must be writable because that is where the forum commits its inode-based accounting fraud.
+The program directories only need to be readable/traversable. The hidden `.data` tree must be writable because that is where the forum commits crimes against people that glow in the dark.
 
 A simple demo setup:
 
@@ -163,6 +152,7 @@ Expected output:
 Nothing.
 
 Count them if you distrust me, which is an extremely reasonable response to this project:
+Also fuck you, if you have to distrust me
 
 ```bash
 find /var/www/html/folderum3 -type f | wc -l
@@ -205,26 +195,13 @@ Open:
 http://0.0.0.0:8080/
 ```
 
-For access from another machine, set the listen address before launching:
-
-```bash
-FOLDERUM_LISTEN=0.0.0.0:8080 ls|sh
-```
-
 Then visit:
 
 ```text
 http://YOUR-SERVER-IP:8080/
 ```
 
-Your existing Apache/nginx site on port 80 is not inherently disturbed by a separate process listening on 8080.
-
-Check whether 8080 is already occupied:
-
-```bash
-sudo ss -ltnp | grep ':8080'
-```
-
+Your existing Apache/nginx site on port 80 is not inherently disturbed by a separate process listening on 8080, so dont piss your pants about it
 ---
 
 # How can `ls|sh` possibly boot PHP?
@@ -271,23 +248,7 @@ Therefore:
 ls|sh
 ```
 
-means:
-
-1. `ls` converts filesystem metadata into shell source.
-2. `sh` executes the directory listing.
-3. The listing concatenates the Base32 chunks in RAM.
-4. `base32 -d` converts those chunks back into PHP source.
-5. `php` executes the source directly from stdin.
-6. PHP starts its own tiny HTTP server.
-7. The forum stores all runtime state as more directories.
-8. Computer science files a restraining order.
-
-No temporary source file is required.
-
-The program exists as PHP only during execution.
-
-At rest, it is a collection of unusually opinionated directory entries.
-
+This lists all and executes all
 ---
 
 # Why Base32?
@@ -308,8 +269,7 @@ This lets every source chunk live directly inside a directory name while the she
 
 So the storage engine is not SQLite.
 
-The storage engine is **the fact that ext4 lets me name a directory something regrettable**.
-
+The storage engine is the fact that everything is a file to UNIX
 ---
 
 # Why is the data directory called `.data`?
@@ -368,13 +328,10 @@ rmdir()
 scandir()
 ```
 
-The transaction department is currently out drinking.
-
 The query planner is `find`.
 
 The database administration client is `tree`.
 
-The schema migration system is “make another folder and hope.”
 
 ---
 
@@ -389,7 +346,7 @@ Register a user and Folderum creates a directory under:
 For example:
 
 ```text
-.data/users/alice/
+.data/users/bob/
 ├── password_beer123/
 └── role_admin/
 ```
@@ -408,11 +365,9 @@ No, this is not remotely safe.
 
 No, you should not use a real password.
 
-This is a joke project whose authentication backend can be audited with `tree`.
-
 The first registered account becomes admin. Later users become normal users.
 
-Password characters are intentionally restricted so nobody can turn the password field into path traversal fan fiction.
+Password characters are intentionally restricted so nobody can turn the password field into a file injection
 
 ---
 
@@ -420,7 +375,7 @@ Password characters are intentionally restricted so nobody can turn the password
 
 A normal authentication system might hash a password and compare the result to a database record.
 
-Folderum asks a more spiritually direct question:
+Folderum asks the real questions:
 
 ```text
 Does password_beer123/ exist?
@@ -435,11 +390,9 @@ welcome back
 If no:
 
 ```text
-begone
+haha
 ```
-
-Authentication is a scavenger hunt.
-
+Authentication is a joke to me
 ---
 
 # Sessions
@@ -455,7 +408,7 @@ The browser gets the random session ID as a cookie.
 
 The server looks for the corresponding directory.
 
-PHP's normal file-backed session machinery was not invited because it kept bringing files into my directory-only household.
+PHP's normal file-backed session machinery is bullshit so i removed the need for one
 
 ---
 
@@ -491,11 +444,7 @@ Threads live below a category:
     └── ...
 ```
 
-Random directory names are primary keys now.
-
-I did not solve relational modeling.
-
-I replaced it with carpentry.
+This is to spit into a hackers face
 
 ---
 
@@ -519,16 +468,14 @@ Long text is Base64URL-encoded, split into chunks, and represented by ordered di
 
 I implemented a `TEXT` datatype with `mkdir()`.
 
-The inode table is basically Redis if you are sufficiently irresponsible.
-
 ---
 
 # Votes
 
-Alice upvotes a post:
+Bob upvotes a post:
 
 ```text
-votes/up/alice/
+votes/up/bob/
 ```
 
 Bob downvotes it:
@@ -543,22 +490,22 @@ Score is:
 count(up directories) - count(down directories)
 ```
 
-The vote table is a folder full of one-byte opinions, except we removed the bytes too.
+The vote table is a math problem even the most retarded first graders can solve.
 
 ---
 
 # Bans
 
-Ban Alice:
+Ban bob:
 
 ```bash
-mkdir .data/users/alice/banned
+mkdir .data/users/bob/banned
 ```
 
-Unban Alice:
+Unban bob:
 
 ```bash
-rmdir .data/users/alice/banned
+rmdir .data/users/bob/banned
 ```
 
 No boolean column.
@@ -567,7 +514,7 @@ No moderation record.
 
 There is only ontology.
 
-If `banned/` exists, Alice is banned.
+If `banned/` exists, bob is banned.
 
 The admin UI exposes ban/unban actions as well.
 
@@ -587,19 +534,16 @@ role_user/
 Manually promote somebody:
 
 ```bash
-rmdir .data/users/alice/role_user
-mkdir .data/users/alice/role_admin
+rmdir .data/users/bob/role_user
+mkdir .data/users/bob/role_admin
 ```
 
 Manually demote:
 
 ```bash
-rmdir .data/users/alice/role_admin
-mkdir .data/users/alice/role_user
+rmdir .data/users/bob/role_admin
+mkdir .data/users/bob/role_user
 ```
-
-RBAC implemented using children's wooden blocks.
-
 ---
 
 # Thread locking
@@ -628,11 +572,10 @@ Unlock it:
 rmdir .data/forum/Technology/threads/0123456789abcdef/locked
 ```
 
-`UPDATE threads SET locked = 1` has left the building.
-
+This feels like a ftp forum tbh
 ---
 
-# Browse the database like a caveman with root access
+# Browse the database like our founding fathers did (tally ho, lads)
 
 Install `tree` if desired:
 
@@ -678,7 +621,7 @@ find .data/forum -type d -name locked
 
 `rmdir` is DELETE.
 
-`mv` is UPDATE if you have enough confidence.
+`mv` is UPDATE if you have the balls
 
 ---
 
@@ -689,7 +632,7 @@ Nothing automatically.
 Folderum's tiny server defaults to:
 
 ```text
-0.0.0.0:8080
+0.0.0.1:8080
 ```
 
 Your normal Apache/nginx setup can remain on port 80.
@@ -709,24 +652,19 @@ FOLDERUM_LISTEN=0.0.0.0:8080 ls|sh
 
 then port 8080 becomes reachable according to your firewall/network configuration.
 
-This proof of concept is not designed to be safely Internet-facing.
-
-Use localhost, a lab VM, LAN demo, disposable VPS, or another environment where consequences have been thoughtfully minimized.
 
 ---
 
 # Security model
 
 The security model is approximately:
-
-> **please don't.**
+ **yes**
 
 This build intentionally includes terrible properties for the joke:
 
 - plaintext passwords in directory names
 - a tiny hand-written HTTP server
 - no HTTPS termination
-- no CSRF protection
 - simplistic request parsing
 - intentionally bizarre persistence
 - deliberately non-production authentication
@@ -735,11 +673,8 @@ Do not reuse real credentials.
 
 Do not host valuable data in it.
 
-Do not make this your company's new identity provider because “LDAP has files in it somewhere.”
-
 We eliminated SQL injection by eliminating SQL.
 
-Path traversal immediately applied for the vacant position, so user-controlled path components are restricted.
 
 ---
 
@@ -790,109 +725,8 @@ Then run:
 x
 ```
 
-But that is cowardice.
-
-The bootstrap did not become smaller; we just hid it in another file/environment.
-
-`ls|sh` is the fun version because all project-specific knowledge remains inside the directory tree itself.
-
-Five visible characters summon the whole forum from filesystem metadata.
-
-That is sufficiently stupid to be beautiful.
-
----
-
-# Suggested demo sequence
-
-First, show that there are no files:
-
-```bash
-find . -type f
-```
-
-Then count them:
-
-```bash
-find . -type f | wc -l
-```
-
-Result:
-
-```text
-0
-```
-
-Then show the beginning of the directory listing:
-
-```bash
-ls | head
-```
-
-Explain:
-
-> Those aren't files. Those are directory names, and they're shell code.
-
-Then run:
-
-```bash
-ls|sh
-```
-
-Open the forum.
-
-Register the first account.
-
-In another terminal:
-
-```bash
-tree .data/users
-```
-
-Create a category, thread, reply and vote.
-
-Then:
-
-```bash
-tree .data/forum
-```
-
-Ban somebody:
-
-```bash
-mkdir .data/users/bob/banned
-```
-
-Lock a thread:
-
-```bash
-mkdir .data/forum/Technology/threads/THREAD_ID/locked
-```
-
-Finally:
-
-```bash
-find . -type f | wc -l
-```
-
-Still:
-
-```text
-0
-```
-
-Finish with:
-
-> **The homepage is recursive `scandir()` with CSS.**
->
-> **Our users table is a directory.**
->
-> **Our columns are more directories.**
->
-> **Our primary keys are random folder names.**
->
-> **Our admin panel is a file manager with delusions of grandeur.**
->
-> **We eliminated SQL injection by eliminating SQL. Then we eliminated files. Then we made `ls` the bootloader.**
+But that is not why i made this.
+ Theres something beautiful in the fact this can exist, who knows - maybe ill make a video game with this tech
 
 ---
 
@@ -940,7 +774,7 @@ sudo -u www-data mkdir /var/www/html/folderum3/.data/fuck_yeah_it_writes
 sudo -u www-data rmdir /var/www/html/folderum3/.data/fuck_yeah_it_writes
 ```
 
-If that succeeds, congratulations: the database cluster has elected a leader.
+If that succeeds: congratulations
 
 ## `ls|sh` prints weird syntax errors
 
@@ -952,21 +786,18 @@ LC_ALL=C ls | head
 
 Normal GNU `ls` writing to a pipe emits one entry per line. This package's boot directories are deliberately named and ordered for that behavior.
 
-Also make sure you are **inside the extracted `folderum3` directory**. Do not drop random visible files or directories next to the boot directories; plain `ls` is the bootloader and it will attempt to achieve enlightenment through them too.
-
+Also make sure you are **inside the extracted `folderum3` directory**. Do not drop random visible files or directories next to the boot directories; plain `ls` is the bootloader and it will attempt to achieve its build process with their names as commands.
 ---
 
 # Backup
 
-Because the entire runtime is directories, back it up normally from outside the purity bubble:
+Because the entire runtime is directories, back files up normally
 
 ```bash
 tar -czf folderum3-backup.tar.gz folderum3
 ```
 
-Yes, the backup is a file.
-
-The archive is transportation, not theology.
+Yes, the backup is a file - boohoo
 
 ---
 
@@ -989,19 +820,17 @@ The next registered user becomes admin again.
 rm -rf folderum3
 ```
 
-Your inode table can now begin the long process of forgiving you.
-
 ---
 
-# Folderum's evolutionary tree
+# Brief history of Folderum
 
 ### Folderum 1
 
-> What if categories were folders and SQL simply wasn't invited?
+> What if no SQL
 
 ### Folderum 2
 
-> What if literally all forum data were directories?
+> What if not even txt
 
 ### Folderum 2: Electric Boogaloo
 
@@ -1013,31 +842,10 @@ Your inode table can now begin the long process of forgiving you.
 
 At this point I have not solved data storage.
 
-I have weaponized ext4.
-
-I have not invented a database.
-
-I have convinced the VFS to participate in performance art.
+I have made what even i dont understand, nor simply dont want to
+I can read the hashes without decoding atp
 
 ---
-
-# Engineering principles
-
-1. If a boolean can be a directory, it is a directory.
-2. If a string can be several directories, congratulations, we invented `TEXT`.
-3. If a database can solve it, ignore that option until the problem becomes interesting again.
-4. Missing directory = false.
-5. Existing directory = true.
-6. `mkdir()` is INSERT.
-7. `rmdir()` is DELETE.
-8. `scandir()` is SELECT.
-9. `tree` is phpMyAdmin.
-10. Inodes are rows if you disrespect both concepts equally.
-11. The filesystem is the ORM.
-12. The directory listing is executable source code.
-13. `ls` is the bootloader.
-14. PHP is now merely a guest in a building made of directory entries.
-15. **EVERYTHING. IS. FOLDERS.**
 
 ---
 
@@ -1045,9 +853,7 @@ I have convinced the VFS to participate in performance art.
 
 There is a normal and responsible way to build a forum.
 
-This is valuable because it demonstrates, with unusual clarity, that I am aware of that fact and consciously walked in the opposite direction.
-
-Folderum 3 is a joke, a demo, a systems-programming party trick, and a love letter to Unix semantics written with the emotional stability of a corrupted inode table.
+But What i describe as Adderal filled mania mixed with absinthe is the way to go
 
 The startup command is still:
 
@@ -1061,4 +867,5 @@ No files.
 
 A complete web forum emerges from a directory listing.
 
-**God gave us directory entries and apparently nobody specified what we were allowed to name them.**
+**Everything is a file ~ UNIX**
+***Everything is a Folder, fuck you UNIX ~ me***
